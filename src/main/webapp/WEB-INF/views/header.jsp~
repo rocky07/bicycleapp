@@ -165,39 +165,39 @@
                                 </li>
                             </ul>
                         </li>
-                        <li>
+                        <!--<li>
                             <a href="shop.html">
                                 category
                                 <span class="red-light">On sale!</span>
                             </a>
-                        </li>
+                        </li>-->
                         <li>
                             <a href="shop.html">Bikes</a>
                         </li>
-                        <li>
+                        <!--<li>
                             <a href="shop.html">Gear</a>
-                        </li>
+                        </li>-->
                         <li>
                             <a href="shop.html">Shop</a>
                             <ul class="sub-menu">
                                 <li>
-                                    <a href="shop-rightsidebar.html">Shop Right</a>
+                                    <a href="shop-rightsidebar">Shop Right</a>
                                 </li>
                                 <li>
-                                    <a href="shop-cart.html">Shop Cart</a>
+                                    <a href="shop-cart">Shop Cart</a>
                                 </li>
                                 <li>
-                                    <a href="shop-checkout.html">Shop Checkout</a>
+                                    <a href="shop-checkout">Shop Checkout</a>
                                 </li>
                                 <li>
-                                    <a href="shop-register.html">Shop Register</a>
+                                    <a href="shop-register">Shop Register</a>
                                 </li>
                                 <li>
-                                    <a href="single-product.html">Shop Single</a>
+                                    <a href="single-product">Shop Single</a>
                                 </li>
                             </ul>
                         </li>
-                        <li>
+                        <!--<li>
                             <a href="blog.html">
                                 Blog
                                 <span class="cyan-dark">Best off!</span>
@@ -210,7 +210,7 @@
                                     <a href="single-blog.html">Blog Single</a>
                                 </li>
                             </ul>
-                        </li>
+                        </li>-->
                         <li>
                             <a href="contact.html">Contact</a>
                         </li>

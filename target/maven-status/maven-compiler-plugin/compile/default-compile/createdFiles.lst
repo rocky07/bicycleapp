@@ -1,0 +1,12 @@
+com/forsfortis/bicycleapp/dao/impl/AbstractDao.class
+com/forsfortis/bicycleapp/dao/UserDao.class
+com/forsfortis/bicycleapp/model/User.class
+com/forsfortis/bicycleapp/services/UserServices.class
+com/forsfortis/bicycleapp/validation/UserValidator.class
+com/forsfortis/bicycleapp/controller/MappingController.class
+com/forsfortis/bicycleapp/model/UserRole.class
+com/forsfortis/bicycleapp/persistance/HibernateConfiguration.class
+com/forsfortis/bicycleapp/vo/UserRole.class
+com/forsfortis/bicycleapp/dao/impl/UserDaoImpl.class
+com/forsfortis/bicycleapp/vo/UserVO.class
+com/forsfortis/bicycleapp/controller/UserController.class

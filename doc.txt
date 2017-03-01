@@ -1,0 +1,17 @@
+main cataeogy 
+
+ >> sub cat 
+....
+
+(boys /girls /kids) >> 
+
+size (26 inch)
+
+
+add product >
+title
+ choose category >color > price >
+description > reviews > information
+
+
+user register > address update > check if the user needs to be registered or not

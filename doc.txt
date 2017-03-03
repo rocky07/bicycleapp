@@ -1,16 +1,16 @@
 main cataeogy 
 
- >> sub cat 
-....
+sub cat 
 
 (boys /girls /kids) >> 
 
 size (26 inch)
 
-
 add product >
 title
- choose category >color > price >
+
+choose category >color > price >
+
 description > reviews > information
 
 

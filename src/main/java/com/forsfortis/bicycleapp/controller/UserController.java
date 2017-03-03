@@ -18,6 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.forsfortis.bicycleapp.model.User;
 import com.forsfortis.bicycleapp.services.UserServices;
+import com.forsfortis.bicycleapp.vo.BillingDetailsVo;
 import com.forsfortis.bicycleapp.vo.UserRole;
 import com.forsfortis.bicycleapp.vo.UserVO;
 
@@ -29,12 +30,16 @@ public class UserController {
 
 	@Autowired
 	@Qualifier("userValidator")
-	private Validator validator;
+	private Validator userValidator;
+	
+	@Autowired
+	@Qualifier("contactDetailsValidator")
+	private Validator contactDetailsValidator;
 
-	@InitBinder
+	/*@InitBinder
 	private void initBinder(WebDataBinder binder) {
 		binder.setValidator(validator);
-	}
+	}*/
 	@RequestMapping("/login")
 	public ModelAndView login(@RequestParam("username") String user,@RequestParam("password") String password){
 		final UserVO userLogin = userService.userLogin(user, password);
@@ -58,6 +63,22 @@ public class UserController {
 		}
 		User userModel=new User();
 		BeanUtils.copyProperties(user, userModel);
+		
+		userService.saveUser(userModel);
+		return "/shop-register";
+	}
+	
+	@RequestMapping("/adduserdetails")
+	public String saveUserDetails(@ModelAttribute("userDetailsForm") @Validated BillingDetailsVo details,BindingResult results, Model model,
+			final RedirectAttributes redirectAttributes){
+		contactDetailsValidator.validate(details, results);
+
+		if (results.hasErrors()) {
+			return "/shop-register";
+		}
+		UserDetails userModel=new UserDetails();
+		
+		BeanUtils.copyProperties(details, userModel);
 		
 		userService.saveUser(userModel);
 		return "/shop-register";

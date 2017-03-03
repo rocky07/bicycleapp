@@ -172,11 +172,13 @@
                             </a>
                         </li>-->
                         <li>
-                            <a href="shop.html">Bikes</a>
+                            <a href="shop.html">Bikes
+                            	<span class="red-light">On sale!</span>
+                            </a>
                         </li>
                         <!--<li>
                             <a href="shop.html">Gear</a>
-                        </li>-->
+                        </li>
                         <li>
                             <a href="shop.html">Shop</a>
                             <ul class="sub-menu">
@@ -197,7 +199,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <!--<li>
+                        <li>
                             <a href="blog.html">
                                 Blog
                                 <span class="cyan-dark">Best off!</span>
@@ -212,7 +214,7 @@
                             </ul>
                         </li>-->
                         <li>
-                            <a href="contact.html">Contact</a>
+                            <a href="contact">Contact</a>
                         </li>
                     </ul>
                     <!--End Main menu-->

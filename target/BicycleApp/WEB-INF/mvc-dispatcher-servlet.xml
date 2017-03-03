@@ -21,6 +21,20 @@
 	    <property name="basename" value="WEB-INF/classes/messages" />
 	</bean>
 
+	<!--  exception mappings begin -->
+     <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="com.forsfortis.springweb.AuthException">
+                    generic_error
+                </prop>
+            </props>
+        </property>
+        <property name="defaultErrorView" value="generic_error"/>
+    </bean>
+    <!--  exception mappings ends -->
+    
+
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	
 	<mvc:resources mapping="/js/**" location="/resources/js/" />

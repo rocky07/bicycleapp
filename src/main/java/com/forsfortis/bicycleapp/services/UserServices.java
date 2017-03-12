@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.forsfortis.bicycleapp.dao.UserDao;
 import com.forsfortis.bicycleapp.model.User;
+import com.forsfortis.bicycleapp.model.UserDetails;
 import com.forsfortis.bicycleapp.vo.UserVO;
 
 @Service
@@ -13,6 +14,10 @@ public class UserServices {
 	UserDao userDao;
 	public boolean saveUser(User user){
 		userDao.saveUser(user);
+		return false;
+	}
+	public boolean saveUserDetails(UserDetails userDetails){
+		userDao.saveUserDetails(userDetails);
 		return false;
 	}
 	

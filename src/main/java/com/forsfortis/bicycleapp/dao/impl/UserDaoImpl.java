@@ -10,15 +10,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.forsfortis.bicycleapp.dao.UserDao;
 import com.forsfortis.bicycleapp.model.User;
+import com.forsfortis.bicycleapp.model.UserDetails;
 import com.forsfortis.bicycleapp.vo.UserVO;
 @Transactional
 @Repository("userDao")
 public class UserDaoImpl extends AbstractDao implements UserDao {
 
 	@Override
-	public boolean saveUser(User user) {
-		getSession().save(user);
-		return true;
+	public int saveUser(User user) {
+		return (Integer)getSession().save(user);
 	}
 
 	@Override
@@ -35,6 +35,11 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 		}
 		
 		return userVo;
+	}
+
+	@Override
+	public int saveUserDetails(UserDetails userDetails) {
+		return (Integer)getSession().save(userDetails);
 	}
 
 }

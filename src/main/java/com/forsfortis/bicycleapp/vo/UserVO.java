@@ -3,11 +3,19 @@ package com.forsfortis.bicycleapp.vo;
 
 public class UserVO {
 	
+	private int id;
 	private String name;
 	private String email;
 	private String password;
 	private String cpassword;
 	
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	private UserRole role;
 	public String getName() {
 		return name;

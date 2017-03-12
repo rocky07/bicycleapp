@@ -13,7 +13,7 @@ public class BillingDetailsVo {
 	private String phone;
 	private String second_address;
 	private boolean createaccount;
-	private boolean shiptodifferetaddress;
+	private boolean shiptodifferentaddress;
 	private String ordernotes;
 	public String getCountry() {
 		return country;
@@ -87,11 +87,11 @@ public class BillingDetailsVo {
 	public void setCreateaccount(boolean createaccount) {
 		this.createaccount = createaccount;
 	}
-	public boolean isShiptodifferetaddress() {
-		return shiptodifferetaddress;
+	public boolean isShiptodifferentaddress() {
+		return shiptodifferentaddress;
 	}
-	public void setShiptodifferetaddress(boolean shiptodifferetaddress) {
-		this.shiptodifferetaddress = shiptodifferetaddress;
+	public void setShiptodifferentaddress(boolean shiptodifferentaddress) {
+		this.shiptodifferentaddress = shiptodifferentaddress;
 	}
 	public String getOrdernotes() {
 		return ordernotes;

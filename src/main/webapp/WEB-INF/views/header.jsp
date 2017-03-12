@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
         <!--Start id tz header-->
         <header id="tz-header" class="bk-white">
             <div class="container">
@@ -34,10 +35,10 @@
                     </ul>
                     <ul class="pull-right">
                         <li>
-                            <a href="shop-register.html">My Account</a>
+                            <a href="my-account.html">My Account</a>
                         </li>
                         <li>
-                            <a href="#">Wishlist</a>
+                            <a href="shop-wishlist.html">Wishlist</a>
                         </li>
                         <li>
                             <a href="shop-cart.html">My Cart</a>
@@ -45,28 +46,37 @@
                         <li>
                             <a href="shop-checkout.html">Checkout</a>
                         </li>
-                        <li class="tz-header-login">
-                            <a href="#">Login</a>
-                            <div class="tz-login-form">
-                                <form action="login">
-                                    <p class="form-content">
-                                        <label for="username">Username / Email</label>
-                                        <input type="text" name="username" id="username" value="">
-                                    </p>
-                                    <p class="form-content">
-                                        <label for="password">Password</label>
-                                        <input type="password" name="password" id="password" value="">
-                                    </p>
-                                    <p class="form-footer">
-                                        <a href="#">Lost Password?</a>
-                                        <button type="submit" class="pull-right button_class">LOGIN</button>
-                                    </p>
-                                    <p class="form-text">
-                                        Don't have an account? <a href="shop-register">Register Here</a>
-                                    </p>
-                                </form>
-                            </div>
-                        </li>
+                       <c:choose>
+                    <c:when test="${sessionScope.user eq null}">
+                    <li class="tz-header-login">
+                        <a href="#">Login</a>
+                        <div class="tz-login-form">
+                            <form ACTION="login" method="post">
+                                <p class="form-content">
+                                    <label for="username">Username / Email</label>
+                                    <input type="text" name="username" id="username" value="">
+                                </p>
+                                <p class="form-content">
+                                    <label for="password">Password</label>
+                                    <input type="password" name="password" id="password" value="">
+                                </p>
+                                <p class="form-footer">
+                                    <a href="#">Lost Password?</a>
+                                    <button type="submit" class="pull-right button_class">LOGIN</button>
+                                </p>
+                                <p class="form-text">
+                                    Don't have an account? <a href="shop-register.html">Register Here</a>
+                                </p>
+                            </form>
+                        </div>
+                    </li>
+                    </c:when>
+                    <c:otherwise>
+                    <li>
+                        <a href="logout">logout <a href="logout"> <c:out value="${user.name}"/></a></a>
+                    </li>
+                    </c:otherwise>
+                    </c:choose>
                     </ul>
                 </div>
                 <!--End class header top-->
@@ -218,3 +228,63 @@
                         </li>
                     </ul>
                     <!--End Main menu-->
+              <!--End Main menu-->
+
+                <!--Shop meta-->
+                <ul class="tz-ecommerce-meta pull-right">
+                    <li class="tz-menu-wishlist">
+                        <a href="#"><strong>0</strong></a>
+                    </li>
+                    <li class="tz-mini-cart">
+                        <a href="shop-cart.html"><strong>2</strong>Cart : <c:out value="${subtotal}"/></a>
+
+                        <!--Mini cart-->
+                        <ul class="cart-inner">
+                        <c:forEach items="${cart}" var="cartitem">
+                            <li class="mini-cart-content">
+                                <div class="mini-cart-img"><img src="images/product/product-cart1.png" alt="product search one"></div>
+                                <div class="mini-cart-ds">
+                                    <h6><a href="single-product.html"><c:out value="${cartitem.title}"></c:out></a></h6>
+                                    <span class="mini-cart-meta">
+                                        <a href="single-product.html"><c:out value="${cartitem.sellingPrice}"/></a>
+                                        <span class="mini-meta">
+                                           <span class="mini-color">Color: <i class="<c:out value="${cartitem.colors}"/>"></i></span>
+                                           <span class="mini-qty">Qty: <c:out value="${cartitem.quantity}"/></span>
+                                        </span>
+                                    </span>
+                                </div>
+                                <a href="removefromcart?id=<c:out value='${cartitem.productId}'/>">
+                                <span class="mini-cart-delete"><img src="images/delete.png" alt="delete"></span>
+                                </a>
+                            </li>
+                            </c:forEach>
+                            <c:set var="subtotal" scope="session"/>
+                            <li class="mini-subtotal">
+                                <span class="subtotal-content">
+                                    Subtotal:
+                                    <strong class="pull-right"><c:out value="${subtotal}"/></strong>
+                                </span>
+                            </li>
+                            <li class="mini-footer">
+                                <a href="shop-cart.html" class="view-cart">View Cart</a>
+                                <a href="shop-checkout.html" class="check-out">Checkout</a>
+                            </li>
+                        </ul>
+                        <!--End mini cart-->
+
+                    </li>
+                </ul>
+                <!--End Shop meta-->
+
+                <!--navigation mobi-->
+                <button data-target=".nav-collapse" class="btn-navbar tz_icon_menu" type="button">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <!--End navigation mobi-->
+            </div>
+        </nav>
+        <!--End stat main menu-->
+
+    </header>
+    <!--End id tz header-->
+                    

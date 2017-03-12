@@ -1,20 +1,21 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Checkout</title>
+        <title>Shop Cart</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet" type='text/css'>
     <link href='fonts/font-awesome/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='fonts/lovelo/stylesheet.css' rel='stylesheet' type='text/css'>
 
+    <link href='css/owl.carousel.css' rel='stylesheet' type='text/css'>
+    <link href='css/owl.theme.css' rel='stylesheet' type='text/css'>
     <link href="css/custom.css" rel="stylesheet" type='text/css'>
 
     <!--[if lt IE 9]>
@@ -255,20 +256,9 @@
 
                         <!--Mini cart-->
                         <ul class="cart-inner">
-                            <li class="mini-cart-content">
-                                <div class="mini-cart-img"><img src="images/product/product-cart1.png" alt="product search one"></div>
-                                <div class="mini-cart-ds">
-                                    <h6><a href="single-product.html">Liv Race Day Short</a></h6>
-                                    <span class="mini-cart-meta">
-                                        <a href="single-product.html">$2650.00</a>
-                                        <span class="mini-meta">
-                                           <span class="mini-color">Color: <i class="orange"></i></span>
-                                           <span class="mini-qty">Qty: 5</span>
-                                        </span>
-                                    </span>
-                                </div>
-                                <span class="mini-cart-delete"><img src="images/delete.png" alt="delete"></span>
-                            </li>
+                            
+                            
+                            
                             <li class="mini-cart-content">
                                 <div class="mini-cart-img"><img src="images/product/product-cart2.png" alt="product search one"></div>
                                 <div class="mini-cart-ds">
@@ -326,7 +316,7 @@
     </header>
     <!--End id tz header-->
 
-    <section class="shop-cart">
+    <section class="shop-checkout">
         <div class="container">
             <!--Start Breadcrumbs-->
             <ul class="tz-breadcrumbs">
@@ -334,217 +324,210 @@
                     <a href="#">Home</a>
                 </li>
                 <li class="current">
-                    Checkout
+                    Shop Cart
                 </li>
             </ul>
             <!--End Breadcrumbs-->
+            <h1 class="page-title">Shop Cart</h1>
 
+            <!--Start form table-->
+             <form:form action="updatecart" modelAttribute="cartform" method="post" >
+                <table class="shop_table cart">
+                    <!--Table header-->
+                    <thead>
+                        <tr>
+                            <th class="product-remove">&nbsp;</th>
+                            <th class="product-thumbnail">Product</th>
+                            <th class="product-name">&nbsp;</th>
+                            <th class="product-price">Price</th>
+                            <th class="product-quantity">Quantity</th>
+                            <th class="product-subtotal">Total</th>
+                        </tr>
+                    </thead>
+                    <!--End table header-->
+
+                    <!--Table body-->
+                    <tbody>
+  <c:forEach items="${cartform.cartList}" var="cart" varStatus="status">
+                        <tr class="cart_item">
+                            <td class="product-remove">
+                                <a href="removefromcart?id=<c:out value='${cart.productId}'/>" class="remove" title="Remove this item"></a>
+                            </td>
+                            <td class="product-thumbnail">
+                                <a href="single-product.html"><img src="images/product/widget1.jpg" alt="cart" /></a>
+                            </td>
+
+                            <td class="product-name">
+                                <a href="single-product.html"><c:out value="${cart.title}"/> </a>
+                                <span class="color">
+                                </span>
+                                    Color: <i class="orange"></i>
+                            </td>
+                            <td class="product-price">
+                                <span class="amount"><c:out value="${cart.sellingPrice}"/> </span>
+                            </td>
+
+                            <td class="product-quantity">
+                                <div class="quantity">
+                                <form:input path="cartList[${status.index}].productId" type="hidden"/>
+                                <form:input path="cartList[${status.index}].title" type="hidden"/>
+                                <form:input path="cartList[${status.index}].colors" type="hidden"/>
+                                <form:input path="cartList[${status.index}].sellingPrice" type="hidden"/>
+                                <form:input type="number" start="1" step="1" path="cartList[${status.index}].quantity" />
+                              <!--  
+                                <input type="text"  name="cart" title="Qty" id="<c:out value='cart.cartList${status.index}.quantity'/>" name="<c:out value='cartList${status.index}.quantity'/>" class="input-text qty text" size="4" value="<c:out value='${cart.quantity}'/>"/>
+                                -->
+                                </div>
+                            </td>
+
+                            <td class="product-subtotal">
+                                <span class="amount"><c:out value="${cart.sellingPrice*cart.quantity}" /></span>
+                            </td>
+                        </tr>
+                        </c:forEach>
+                        <!-- <tr class="cart_item">
+                            <td class="product-remove">
+                                <a href="#" class="remove fa-" title="Remove this item"></a>
+                            </td>
+                            <td class="product-thumbnail">
+                                <a href="single-product.html"><img src="images/product/widget2.jpg" alt="cart" /></a>
+                            </td>
+
+                            <td class="product-name">
+                                <a href="single-product.html">City Pedals Sport </a>
+                                <span class="color">
+                                    Color: <i class="light-blue"></i>
+                                </span>
+                            </td>
+                            <td class="product-price">
+                                <span class="amount">$20.00</span>
+                            </td>
+
+                            <td class="product-quantity">
+                                <div class="quantity"><input type="number" step="1" min="0" name="cart" value="1" title="Qty" class="input-text qty text" size="4"></div>
+                            </td>
+
+                            <td class="product-subtotal">
+                                <span class="amount">$229.00</span>
+                            </td>
+                        </tr>
+                        <tr class="cart_item">
+                            <td class="product-remove">
+                                <a href="#" class="remove fa-" title="Remove this item"></a>
+                            </td>
+                            <td class="product-thumbnail">
+                                <a href="single-product.html"><img src="images/product/widget3.jpg" alt="cart" /></a>
+                            </td>
+
+                            <td class="product-name">
+                                <a href="single-product.html">Gloss </a>
+                                <span class="color">
+                                    Color: <i class="red-light"></i>
+                                </span>
+                            </td>
+                            <td class="product-price">
+                                <span class="amount">$20.00</span>
+                            </td>
+
+                            <td class="product-quantity">
+                                <div class="quantity"><input type="number" step="1" min="0" name="cart" value="1" title="Qty" class="input-text qty text" size="4"></div>
+                            </td>
+
+                            <td class="product-subtotal">
+                                <span class="amount">$229.00</span>
+                            </td>
+                        </tr>
+                         -->
+                        <tr>
+                            <td class="actions" colspan="6">
+                                <a class="back-shop" href="#"><i class="fa fa-angle-left"></i> BACK TO SHOP</a>
+                                <button class="update-cart" type="submit">update cart</button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                    <!--End table body-->
+                </table>
+            </form:form>
+            <!--End form table-->
+
+            <!--Cart attr-->
             <div class="row">
-                <div class="col-md-6">
-                    <h1 class="page-title">Checkout</h1>
-
-                    <!--Shop info-->
-                    <div class="shop-info">
-                        <p>Returning customer? <a href="#">Click here to login</a></p>
-                        <p>Have a coupon?  <a href="#">Click here to enter your code</a></p>
+                <div class="col-md-6 col-sm-6">
+                    <!--Coupon-->
+                    <div class="coupon">
+                        <h3>Coupon</h3>
+                        <form>
+                            <p>Enter your coupon code if you have one.</p>
+                            <input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="Coupon code">
+                            <input type="submit" class="button" name="apply_coupon" value="Apply Coupon">
+                        </form>
                     </div>
-                    <!--End shop info-->
-
-                    <!--Start form checkout-->
-                    <form:form action="saveuserdetails" modelAttribute="userDetailsForm" method="post" >
-                        <div class="shop-billing-fields">
-                            <h3>Billing Details</h3>
-                            <p class="form-row">
-                                <label>Country <span class="required">*</span></label>
-                                <form:select path="country">
-                                    <option value="IN">India (IN)</option>
-                                </form:select>
-                            </p>
-                            <p class="form-row form-row-first">
-                                <label for="first_name" class="">First Name <span class="required">*</span></label>
-                                <form:input path="first_name" type="text" class="input-text " name="first_name" id="first_name" placeholder="" value=""/>
-                                <form:errors path="first_name"/>
-                            </p>
-                            <p class="form-row form-row-last">
-                                <label for="last_name" class="">Last Name <span class="required">*</span></label>
-                                <form:input path="last_name" type="text" class="input-text " name="last_name" id="last_name" placeholder="" value=""/>
-                                <form:errors path="last_name"/>
-                            </p>
-                            <div class="clear"></div>
-                            <p class="form-row">
-                                <label for="company">Company Name</label>
-                                <form:input path="company_name" type="text" class="input-text " name="company_name" id="company_name" placeholder="" value=""/>
-                                <form:errors path="company_name"/>
-                            </p>
-                            <p class="form-row">
-                                <label for="address">Address  <span class="required">*</span></label>
-                                <form:input path="address" type="text" class="input-text " name="address" id="address" placeholder="" value=""/>
-                                <form:errors path="address"/>
-                            </p>
-                            <p class="form-row">
-                                <label for="city">Town / City<span class="required">*</span></label>
-                                <form:input path="city" type="text" class="input-text " name="city" id="city" placeholder="" value=""/>
-                                <form:errors path="city" />
-                            </p>
-                            <p class="form-row form-row-first">
-                                <label for="state">State <span class="required">*</span></label>
-                                <form:input path="state" type="text" class="input-text " name="state" id="state" placeholder="" value=""/>
-                                <form:errors path="state" />
-                            </p>
-                            <p class="form-row form-row-last">
-                                <label for="zip">Zip  <span class="required">*</span></label>
-                                <form:input path="zip" type="text" class="input-text " name="zip" id="zip" placeholder="" value=""/>
-                                <form:errors path="zip" />
-                            </p>
-                            <div class="clear"></div>
-                            <p class="form-row form-row-first">
-                                <label for="email">Email Address<span class="required">*</span></label>
-                                <form:input path="email" type="email" class="input-text " name="email" id="email" placeholder="" value=""/>
-                                <form:errors path="email" />
-                            </p>
-                            <p class="form-row form-row-last">
-                                <label for="phone">Phone  <span class="required">*</span></label>
-                                <form:input path="phone" type="text" class="input-text " name="phone" id="phone" placeholder="" value=""/>
-                                <form:errors path="phone" />
-                            </p>
-                            <div class="clear"></div>
-                            <p class="form-row create-account">
-                                <form:checkbox path="createaccount" class="createaccount" id="createaccount" name="createaccount" value="1"/> <label for="createaccount" class="checkbox">Create an account?</label>
-                            </p>
-                            <p class="form-row ship-to-different-address-checkbox">
-                                <form:checkbox path="shiptodifferentaddress" class="input-checkbox" id="shiptodifferentaddress" name="shiptodifferentaddress" value="1"/>
-                                <label for="shiptodifferentaddress" class="ship-to-different-address-checkbox">Ship to a different address?</label>
-                            </p>
-                            <p class="form-row notes">
-                                <label for="ordernotes" class="">Order Notes</label>
-                                <form:textarea path="ordernotes" name="ordernotes" class="input-text " id="ordernotes" placeholder="Notes about your order, e.g. special notes for delivery." rows="2" cols="5"/>
-                            </p>
-                            <p class="comment-for-submit">
-                                    <input name="submit" type="submit" id="submit" class="submit" value="Submit form">
-                            </p>
-                        </div>
-                    </form:form>
-                    <!--End form checkout-->
-
+                    <!--End coupon-->
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 col-sm-6">
 
-                    <!--Order review-->
-                    <div id="order_review">
-                        <h3>Your Order</h3>
-
-                        <!--Shop table-->
-                        <table class="shop_table">
-                            <thead>
-                                <tr>
-                                    <th class="product-name">Product</th>
-                                    <th class="product-total">Total</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <c:forEach items="${cart}" var="cartItem">
-                            	<tr class="cart_item">
-                                    <td class="product-name">
-                                     	<c:out value="${cartItem.title}" />
-                                        <strong class="product-quantity"><c:out value="${cartItem.quantity}" /></strong>
-                                    </td>
-                                    <td class="product-total">
-                                        <span class="amount"><c:out value="${cartItem.quantity * cartItem.sellingPrice}"/></span>
-                                    </td>
-                                	</tr>
-                            </c:forEach>
-                                
-                            </tbody>
-                            <tfoot>
-                            <tr class="cart-subtotal">
-                                <th>Cart Subtotal</th>
-                                <td><span class="amount"><c:out value="${subtotal}"/></span></td>
-                            </tr>
-
-                            <tr class="shipping">
-                                <th>Shipping and Handling</th>
-                                <td>
-                                    <form class="shop-shipping-calculator"  method="post">
-                                        <p class="form-r">
-                                            <input type="checkbox" name="rate" value="1" />
-                                            <span>
-                                               Flat Rate:
-                                               <span class="price">
-                                                   $30.00
-                                               </span>
-                                            </span>
-                                        </p>
-                                        <p class="form-r">
-                                            <input type="checkbox" name="international" value="1" />
-                                            <span>
-                                               International Delivery:
-                                               <span class="price">
-                                                   $150.00
-                                               </span>
-                                            </span>
-                                        </p>
-                                        <p class="form-r">
-                                            <input type="checkbox" name="rate" value="1" />
-                                            <span>
-                                               Local Delivery:
-                                               <span class="price">
-                                                   $90.00
-                                               </span>
-                                            </span>
-                                        </p>
-                                        <p class="form-r">
-                                            <input type="checkbox" name="pickup" value="1" />
-                                            <span>Local Pickup (Free)</span>
-                                        </p>
-                                    </form>
-                                </td>
-                            </tr>
-
-                            <tr class="order-total">
-                                <th>Order Total</th>
-                                <td><strong><span class="amount">$520.00</span></strong> </td>
-                            </tr>
-                            </tfoot>
-                        </table>
-                        <!--End shop table-->
-
-                        <!--Start payment-->
-                        <div id="payment" class="checkout-payment">
-                            <ul class="payment_methods methods">
-                                <li class="payment_method_bacs">
-                                    <input id="payment_method_bacs" type="radio" class="input-radio" name="payment_method" value="bacs" checked="checked">
-
-                                    <label for="payment_method_bacs">
-                                        Direct Bank Transfer
-                                    </label>
-                                    <div class="payment_box payment_method_bacs">
-                                        <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
-                                    </div>
-                                </li>
-                                <li class="payment_method_cheque">
-                                    <input id="payment_method_cheque" type="radio" class="input-radio" name="payment_method" value="cheque">
-                                    <label for="payment_method_cheque">
-                                        Cheque Payment
-                                    </label>
-                                </li>
-                                <li class="payment_method_paypal">
-                                    <input id="payment_method_paypal" type="radio" class="input-radio" name="payment_method" value="paypal">
-                                    <label for="payment_method_paypal">
-                                        PayPal
-                                    </label>
-                                </li>
-                            </ul>
-
-                            <div class="clear"></div>
+                    <!--Cart totals-->
+                    <div class="cart_totals">
+                        <div class="cart_totals_inner">
+                            <table>
+                                <tbody>
+                                    <tr class="cart-subtotal">
+                                        <th>Subtotal</th>
+                                        <td><span class="amount"><c:out value="${subtotal}"/></span></td>
+                                    </tr>
+                                    <!-- <tr class="shipping">
+                                        <th>Shipping and handling</th>
+                                        <td>
+                                            <form class="shop-shipping-calculator"  method="post">
+                                               <p class="form-r">
+                                                   <input type="checkbox" name="rate" value="1" />
+                                                   <span>
+                                                       Flat Rate:
+                                                       <span class="price">
+                                                           $30.00
+                                                       </span>
+                                                   </span>
+                                               </p>
+                                                <p class="form-r">
+                                                    <input type="checkbox" name="international" value="1" />
+                                                   <span>
+                                                       International Delivery:
+                                                       <span class="price">
+                                                           $150.00
+                                                       </span>
+                                                   </span>
+                                                </p>
+                                                <p class="form-r">
+                                                    <input type="checkbox" name="rate" value="1" />
+                                                   <span>
+                                                       Local Delivery:
+                                                       <span class="price">
+                                                           $90.00
+                                                       </span>
+                                                   </span>
+                                                </p>
+                                                <p class="form-r">
+                                                    <input type="checkbox" name="pickup" value="1" />
+                                                   <span>Local Pickup (Free)</span>
+                                                </p>
+                                            </form>
+                                        </td>
+                                    </tr> -->
+                                    <tr class="order-total">
+                                        <th>Order total</th>
+                                        <td><span class="amount"><c:out value="${subtotal}"/></span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <!--End payment-->
 
                     </div>
-                    <!--End order review-->
+                    <!--End cart totals-->
 
                 </div>
             </div>
-
+            <!--End cart attr-->
         </div>
     </section>
 
@@ -699,13 +682,13 @@
                     </div>
                     <div class="col-md-6 col-sm-6">
                         <div class="pull-right">
-                            <span class="payments-method">
-                                <a href="#"><img src="images/Visa.png" alt="visa"></a>
-                                <a href="#"><img src="images/Intersection.png" alt="Intersection"></a>
-                                <a href="#"><img src="images/ebay.png" alt="ebay"></a>
-                                <a href="#"><img src="images/Amazon.png" alt="Amazon"></a>
-                                <a href="#"><img src="images/Discover.png" alt="Discover"></a>
-                            </span>
+                        <span class="payments-method">
+                            <a href="#"><img src="images/Visa.png" alt="visa"></a>
+                            <a href="#"><img src="images/Intersection.png" alt="Intersection"></a>
+                            <a href="#"><img src="images/ebay.png" alt="ebay"></a>
+                            <a href="#"><img src="images/Amazon.png" alt="Amazon"></a>
+                            <a href="#"><img src="images/Discover.png" alt="Discover"></a>
+                        </span>
                         </div>
                     </div>
                 </div>
@@ -719,7 +702,13 @@
 <script src="js/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/off-canvas.js"></script>
+<!--jQuery Countdow-->
+<script src="js/jquery.plugin.min.js"></script>
+<script src="js/jquery.countdown.min.js"></script>
+<!--End Countdow-->
+
+<script src="js/owl.carousel.js"></script>
 <script src="js/custom.js"></script>
 
-</body>a
+</body>
 </html>

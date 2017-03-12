@@ -6,23 +6,34 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.forsfortis.bicycleapp.vo.UserRole;
+
 @javax.persistence.Entity
 @Table(name="user")
 public class User {
 	@Id
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	private String email;
 	private String password;
 	private String name;
 	//@OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
 	private String role;
 	
-	public int getId() {
+	public User(UserRole user){
+		this.role=String.valueOf(user);
+	}
+	public User(){
+	}
+	public User(int id){
+		this.id=id;
+	}
+	
+	public Integer getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	public String getEmail() {

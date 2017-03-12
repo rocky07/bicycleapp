@@ -11,6 +11,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.forsfortis.bicycleapp.mail.SendMail;
@@ -27,15 +28,16 @@ public class ContactController {
 	}
 	
 	@RequestMapping("/sendmail")
-	public String sendMail(@ModelAttribute("contactForm") @Validated ContactVo contact,BindingResult result, Model model,
+	public ModelAndView sendMail(@ModelAttribute("contactForm") @Validated ContactVo contact,BindingResult result, Model model,
 			final RedirectAttributes redirectAttributes){
+		ModelAndView mv=new ModelAndView();
 		if(result.hasErrors()){
-			return "contact";
+			mv.setViewName("contact");
 		}else{
 			SendMail.sendMail(contact.getEmail(), contact.getWebsite()+":"+contact.getComment());
-			return "index";
+			mv.setViewName("index");
 		}
-		
+		return mv;
 	}
 	
 }

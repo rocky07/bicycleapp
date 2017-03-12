@@ -1,10 +1,16 @@
 package com.forsfortis.bicycleapp.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 @Entity
 @Table(name="user_details")
@@ -14,6 +20,9 @@ public class UserDetails {
 	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+	@ManyToOne(fetch = FetchType.LAZY,targetEntity=User.class,cascade=CascadeType.ALL)  
+	@JoinColumn(name="user") 
+	private User user;
 	private String country;
 	private String first_name;
 	private String last_name;
@@ -25,11 +34,20 @@ public class UserDetails {
 	private String email;
 	private String phone;
 	private String second_address;
+	private String ordernotes;
+	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
 	}
 	public String getCountry() {
 		return country;
@@ -96,6 +114,12 @@ public class UserDetails {
 	}
 	public void setSecond_address(String second_address) {
 		this.second_address = second_address;
+	}
+	public String getOrdernotes() {
+		return ordernotes;
+	}
+	public void setOrdernotes(String ordernotes) {
+		this.ordernotes = ordernotes;
 	}
 	
 }

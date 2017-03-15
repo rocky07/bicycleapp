@@ -7,12 +7,12 @@
                     <div class="footer-left">
                         <div class="contact-info widget">
                             <h3 class="widget-title">Contact info</h3>
-                            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium</p>
+                            <p>For all sales and support</p>
                             <ul>
                                 <li>
                                     <span>Address :</span>
                                     <address>
-                                        123 Sky Tower address name, Los Algeles, ,<br> USA, Country, 01234
+                                        134/2095A, Mamangalam, Cochin, India <br/>Pin:682025, 
                                     </address>
                                 </li>
                                 <li>

@@ -236,11 +236,11 @@
                         <a href="#"><strong>0</strong></a>
                     </li>
                     <li class="tz-mini-cart">
-                        <a href="shop-cart.html"><strong>2</strong>Cart : <c:out value="${subtotal}"/></a>
+                        <a href="shop-cart.html"><strong>2</strong>Cart : <c:out value="${sessionScope.sbt}"/></a>
 
                         <!--Mini cart-->
                         <ul class="cart-inner">
-                        <c:forEach items="${cart}" var="cartitem">
+                        <c:forEach items="${sessionScope.cartvalues}" var="cartitem">
                             <li class="mini-cart-content">
                                 <div class="mini-cart-img"><img src="images/product/product-cart1.png" alt="product search one"></div>
                                 <div class="mini-cart-ds">
@@ -262,7 +262,7 @@
                             <li class="mini-subtotal">
                                 <span class="subtotal-content">
                                     Subtotal:
-                                    <strong class="pull-right"><c:out value="${subtotal}"/></strong>
+                                    <strong class="pull-right"><c:out value="${sessionScope.sbt}"/></strong>
                                 </span>
                             </li>
                             <li class="mini-footer">

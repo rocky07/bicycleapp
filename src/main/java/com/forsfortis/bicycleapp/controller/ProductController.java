@@ -28,9 +28,26 @@ import com.forsfortis.bicycleapp.vo.UserVO;
 @Controller
 public class ProductController {
 	private static final String SHOPPING_CART = "cart";
+	private static final String SHOPPING_CART_VALUES = "cartvalues";
 	private static final String SHOPPING_CART_FORM = "cartform";
+	private static final String SUBTOTAL="subtotal";
 	@Autowired
 	ProductServices productService;
+	
+	private void computeTotal(HttpSession httpSession){
+		final Object cartList = httpSession.getAttribute(SHOPPING_CART);
+		Map<Integer,ShopingCartVo> cartValues=null;
+		int subtotal=0;
+		if(cartList!=null){
+			cartValues=(Map<Integer,ShopingCartVo>)cartList;
+			for (ShopingCartVo cartVo : cartValues.values()) {
+				subtotal+=cartVo.getQuantity()*cartVo.getSellingPrice();
+			}
+		}
+		cartValues=(Map<Integer,ShopingCartVo>)cartList;
+		httpSession.setAttribute(SHOPPING_CART_VALUES, cartValues!=null ? cartValues.values():null);
+		httpSession.setAttribute("sbt", subtotal);
+	}
 	@RequestMapping("/shop")
 	public ModelAndView shop(@RequestParam(value="start",required=false) Integer start,@RequestParam(value="limit",required=false) Integer limit,@RequestParam(value="catid",required=false) Integer categoryId,HttpSession httpSession){
 		//fetch all categories
@@ -47,21 +64,21 @@ public class ProductController {
 			start=0;
 		}
 		final List<ProductVo> products = productService.getProducts(start, limit,categoryId);
-		final Object cartList = httpSession.getAttribute(SHOPPING_CART);
-		Map<Integer,ShopingCartVo> cartValues=null;
-		int subtotal=0;
+		/*final Object cartList = httpSession.getAttribute(SHOPPING_CART);
+		Map<Integer,ShopingCartVo> cartValues=null;*/
+		/*int subtotal=0;
 		if(cartList!=null){
 			cartValues=(Map<Integer,ShopingCartVo>)cartList;
 			for (ShopingCartVo cartVo : cartValues.values()) {
 				subtotal+=cartVo.getQuantity()*cartVo.getSellingPrice();
 			}
 			
-		}
+		}*/
 		
 		ModelAndView mv = new ModelAndView();
-		mv.addObject(SHOPPING_CART, cartValues!=null ? cartValues.values():null);
+	//	mv.addObject(SHOPPING_CART, cartValues!=null ? cartValues.values():null);
 		mv.addObject("productcategory", productcategories);
-		mv.addObject("subtotal", subtotal);
+		//mv.addObject("subtotal", subtotal);
 		mv.addObject("productsizes", productSize);
 		mv.addObject("productbrands", productBrand);
 		mv.addObject("product",products);
@@ -76,12 +93,12 @@ public class ProductController {
 	public ModelAndView shopCart(HttpSession httpSession){
 		final Object cartList = httpSession.getAttribute(SHOPPING_CART);
 		Map<Integer,ShopingCartVo> cartValues=null;
-		int subtotal=0;
+		//int subtotal=0;
 		if(cartList!=null){
 			cartValues=(Map<Integer,ShopingCartVo>)cartList;
-			for (ShopingCartVo cartVo : cartValues.values()) {
+			/*for (ShopingCartVo cartVo : cartValues.values()) {
 				subtotal+=cartVo.getQuantity()*cartVo.getSellingPrice();
-			}
+			}*/
 			
 		}
 		Cart cart=new Cart();
@@ -91,7 +108,7 @@ public class ProductController {
 		ModelAndView mv=new ModelAndView();
 		mv.setViewName("shop-cart");
 		mv.addObject(SHOPPING_CART_FORM,cart);
-		mv.addObject("subtotal", subtotal);
+		//mv.addObject("subtotal", subtotal);
 		
 	return mv;	
 	}
@@ -107,6 +124,7 @@ public class ProductController {
 				((Map<Integer,ShopingCartVo>)cartList).put(shopingCartVo.getProductId(),shopingCartVo);
 			}
 		}
+		computeTotal(httpSession);
 		return new ModelAndView("redirect:/shop-cart");
 	}
 	
@@ -129,6 +147,7 @@ public class ProductController {
 		}
 		ShopingCartVo vo=new ShopingCartVo(productId,price,title); 
 		((Map<Integer,ShopingCartVo>)cartList).put(productId,vo);
+		computeTotal(httpSession);
 		return new ModelAndView("redirect:/shop");
 	}
 	
@@ -139,6 +158,7 @@ public class ProductController {
 			cartList=httpSession.getAttribute(SHOPPING_CART);
 			((Map<Integer,ShopingCartVo>)cartList).remove(productId);
 		}
+		computeTotal(httpSession);
 		return new ModelAndView("redirect:/shop");
 	}
 	@RequestMapping("/shop-checkout")
@@ -146,20 +166,20 @@ public class ProductController {
 		
 		final Object cartList = httpSession.getAttribute(SHOPPING_CART);
 		Map<Integer,ShopingCartVo> cartValues=null;
-		int subtotal=0;
+		/*int subtotal=0;
 		if(cartList!=null){
 			cartValues=(Map<Integer,ShopingCartVo>)cartList;
 			for (ShopingCartVo cartVo : cartValues.values()) {
 				subtotal+=cartVo.getQuantity()*cartVo.getSellingPrice();
 			}
 			
-		}
+		}*/
 		
 		BillingDetailsVo user=new BillingDetailsVo();
 		ModelAndView mv=new ModelAndView();
 		mv.addObject("userDetailsForm", user);
-		mv.addObject(SHOPPING_CART,cartValues!=null ? cartValues.values():null);
-		mv.addObject("subtotal", subtotal);
+		/*mv.addObject(SHOPPING_CART,cartValues!=null ? cartValues.values():null);
+		mv.addObject("subtotal", subtotal);*/
 		mv.setViewName("shop-checkout");
 		return mv;
 	}

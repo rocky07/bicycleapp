@@ -25,7 +25,7 @@
      <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
         <property name="exceptionMappings">
             <props>
-                <prop key="com.forsfortis.springweb.AuthException">
+                <prop key="javax.mail.AuthenticationFailedException">
                     generic_error
                 </prop>
             </props>

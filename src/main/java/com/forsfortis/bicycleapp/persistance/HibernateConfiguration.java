@@ -38,9 +38,9 @@ public class HibernateConfiguration {
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/bicycleapp");
-        dataSource.setUsername("root");
-        dataSource.setPassword("root");
+        dataSource.setUrl("jdbc:mysql://mysql3000.mochahost.com:3306/cyclo17_cyclo");
+        dataSource.setUsername("cyclo17_cyclo17");
+        dataSource.setPassword("cyclo1709");
         return dataSource;
     }
      

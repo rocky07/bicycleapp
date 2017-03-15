@@ -11,10 +11,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Validator;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -53,7 +50,7 @@ public class UserController {
 		final UserVO userLogin = userService.userLogin(user, password);
 		ModelAndView mv = new ModelAndView();
 		if (userLogin != null) {
-			mv.setViewName("index");
+			mv.setViewName("redirect:/shop");
 			mv.addObject("msg", userLogin.getName());
 			httpSession.setAttribute("user", userLogin);
 		}else{
@@ -64,7 +61,7 @@ public class UserController {
 	@RequestMapping("/logout")
 	public String logout(HttpSession httpSession){
 		httpSession.removeAttribute("user");
-		return "index";
+		return "redirect:/shop";
 	}
 	
 	@RequestMapping("/adduser")

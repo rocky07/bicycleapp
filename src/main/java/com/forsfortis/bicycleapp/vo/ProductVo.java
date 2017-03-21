@@ -1,5 +1,7 @@
 package com.forsfortis.bicycleapp.vo;
 
+import java.util.List;
+
 import com.forsfortis.bicycleapp.model.Colors;
 import com.forsfortis.bicycleapp.model.ProductBrand;
 import com.forsfortis.bicycleapp.model.ProductCategory;
@@ -19,6 +21,8 @@ public class ProductVo {
 	private ProductSize size;
 	private ProductBrand brand;
 	private String title;
+	private List<ProductImagesVo> productImages;
+
 	public int getId() {
 		return id;
 	}
@@ -98,4 +102,11 @@ public class ProductVo {
 		this.title = title;
 	}
 
+	public List<ProductImagesVo> getProductImages() {
+		return productImages;
+	}
+	
+	public void setProductImages(List<ProductImagesVo> productImages) {
+		this.productImages = productImages;
+	}
 }

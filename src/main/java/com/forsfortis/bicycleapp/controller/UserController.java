@@ -45,13 +45,22 @@ public class UserController {
 	private void initBinder(WebDataBinder binder) {
 		binder.setValidator(validator);
 	}*/
+	@RequestMapping("shop-login")
+	public String shopLogin(){
+		return "shop-login";
+	}
 	@RequestMapping("/login")
 	public ModelAndView login(@RequestParam("username") String user,@RequestParam("password") String password,HttpSession httpSession){
 		final UserVO userLogin = userService.userLogin(user, password);
 		ModelAndView mv = new ModelAndView();
 		if (userLogin != null) {
+			if(userLogin.getRole() == UserRole.ADMIN){
+				mv.setViewName("redirect:/product-images");
+				mv.addObject("msg", userLogin.getName());
+			}else{
 			mv.setViewName("redirect:/shop");
 			mv.addObject("msg", userLogin.getName());
+			}
 			httpSession.setAttribute("user", userLogin);
 		}else{
 			mv.setViewName("shop-register");
@@ -101,5 +110,11 @@ public class UserController {
 		}
 		userService.saveUserDetails(userDetailsModel);
 		return "/shop-checkout";
+	}
+	
+	@RequestMapping("/subscribe")
+	public String subscribe(@RequestParam("sub") String sub){
+		userService.saveSubscribers(sub);
+		return "redirect:/index";
 	}
 }

@@ -23,7 +23,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class HibernateConfiguration {
  
     @Autowired
-    private Environment environment;
+    private Environment env;
  
     @Bean
     public LocalSessionFactoryBean sessionFactory() {
@@ -36,11 +36,12 @@ public class HibernateConfiguration {
      
     @Bean
     public DataSource dataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://mysql3000.mochahost.com:3306/cyclo17_cyclo");
-        dataSource.setUsername("cyclo17_cyclo17");
-        dataSource.setPassword("cyclo1709");
+   
+         DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName(env.getProperty("dbc.driverClassName"));
+        dataSource.setUrl(env.getProperty("jdbc.url"));
+        dataSource.setUsername(env.getProperty("jdbc.username"));
+        dataSource.setPassword(env.getProperty("jdbc.password"));
         return dataSource;
     }
      

@@ -129,7 +129,17 @@
                               <c:forEach items="${featuredproducts}" var="product">
                                 <li>
                                     <a href="shop-product?id=<c:out value='${product.id}'/>">
-                                        <img src="images/product/widget1.jpg" alt="Defy Advanced">
+                                    
+                                     <c:choose>
+			                                <c:when test="${not empty product.productImages}">
+			                                <img src='uploads/product/<c:out value="${product.productImages[0].image}"/>' alt="product search one">
+			                                </c:when>
+			                                <c:otherwise>
+			                                	<img src="images/product/widget1.jpg" alt="Defy Advanced">
+			                                </c:otherwise>
+			                                </c:choose>
+			                                
+                                        
                                         <div class="item-info">
                                             <h5><c:out value="${product.title}" /></h5>
                                              <span class="p-vote">
@@ -199,7 +209,15 @@
                                 <div class="item">
                                     <div class="product-item-inner">
                                         <div class="product-thumb">
-                                            <img src="images/product/shop1.jpg" alt="Liv Race Day Short Finger..">
+                                        
+                                        <c:choose>
+			                                <c:when test="${not empty product.productImages}">
+			                                <img src='uploads/product/<c:out value="${product.productImages[0].image}"/>' alt="product search one">
+			                                </c:when>
+			                                <c:otherwise>
+			                                	<img src="images/product/shop1.jpg" alt="product search one">
+			                                </c:otherwise>
+			                                </c:choose>
                                         </div>
                                         <div class="product-info">
                                             <h4> <a href="shop-product?id=<c:out value='${product.id}'/>"><c:out value="${product.title}" /></a></h4>

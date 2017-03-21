@@ -20,7 +20,7 @@ public class MappingController {
 	
 	@Autowired
 	ProductServices productService;
-	@RequestMapping("/index")
+	@RequestMapping(value={"/index","/"})
 	public ModelAndView loadPage(HttpSession httpSession){
 		final List<ProductCategoryVo> productsByCategory = productService.getProductsByCategory();
 		final ProductVo product = productService.getProduct(1);

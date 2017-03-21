@@ -27,43 +27,31 @@
 <div class="tz-site">
 
     <!--Start id tz header-->
-	<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="header.jsp"></jsp:include>
     <!--End id tz header-->
 
     <!--Start create an account-->
     <section class="default-page">
         <div class="container">
             <div class="tz-register">
-                <h2>Create an account</h2>
+                <h2>Login</h2>
 				
 				
                 <!--Start form-->
-                <form:form method="post" modelAttribute="userForm" action="adduser">
+                <form method="post" action="login">
                     <p class="form-row form-row-wide">
-                        <label for="email">Email address</label>
-                        <form:input path="email" class="input-text" type="text" />
-                        <form:errors path="email" />
-                    </p>
-                    <p class="form-row form-row-wide">
-                        <label for="name">Name</label>
-                        <form:input path="name" class="input-text" type="text" />
-                        <form:errors path="name" />
+                        <label for="username">Email address</label>
+                        <input name="username" class="input-text" type="text" />
                     </p>
                     <p class="form-row form-row-wide">
                         <label for="password">Password</label>
-                        <form:input path="password" class="input-text" type="password" />
-                        <form:errors path="password" />
-                    </p>
-                    <p class="form-row form-row-wide">
-                        <label for="cpassword">Confirm Password</label>
-                        <form:input path="cpassword" class="input-text" type="password" />
-                        <form:errors path="cpassword" />
+                        <input name="password" class="input-text" type="password" />
                     </p>
  					<p class="form-row">
-                        <input type="submit" id="userform" class="button" name="register" value="Create an account">
+                        <input type="submit" id="userform" class="button" name="register" value="Login">
                     </p>
                    
-                </form:form>
+                </form>
                 
                 <!--End form-->
 

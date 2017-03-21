@@ -36,6 +36,13 @@ public class Product {
 	private ProductBrand brand;
 	private String title;
 
+	public Product(int productId) {
+		this.id=productId;
+	}
+	public Product(){
+		
+	}
+
 	public int getId() {
 		return id;
 	}

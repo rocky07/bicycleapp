@@ -12,6 +12,7 @@ import com.forsfortis.bicycleapp.dao.ProductDao;
 import com.forsfortis.bicycleapp.model.Product;
 import com.forsfortis.bicycleapp.model.ProductBrand;
 import com.forsfortis.bicycleapp.model.ProductCategory;
+import com.forsfortis.bicycleapp.model.ProductImage;
 import com.forsfortis.bicycleapp.model.ProductSize;
 @Transactional
 @Repository("productDao")
@@ -55,6 +56,29 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
 		final Product product = (Product)getSession().get(Product.class, productId);
 		// TODO Auto-generated method stub
 		return product;
+	}
+
+	@Override
+	public void saveProductImage(Integer productid, String name) {
+		ProductImage productImage=new ProductImage();
+		productImage.setImage(name);
+		productImage.setProductid(new Product(productid));
+		getSession().save(productImage);
+	}
+
+	@Override
+	public List<ProductImage> getProductImages(Integer productId) {
+		final Criteria createCriteria = getSession().createCriteria(ProductImage.class);
+		if(productId!=null){
+			createCriteria.add(Restrictions.eq("productid",new Product(productId)));
+		}
+		return (List<ProductImage>)createCriteria.list();
+	}
+
+	@Override
+	public void deleteProductImage(int productImageId) {
+		getSession().delete(new ProductImage(productImageId));
+		
 	}
 
 }

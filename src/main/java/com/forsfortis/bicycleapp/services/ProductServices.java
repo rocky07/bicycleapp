@@ -12,9 +12,12 @@ import com.forsfortis.bicycleapp.dao.ProductDao;
 import com.forsfortis.bicycleapp.model.Product;
 import com.forsfortis.bicycleapp.model.ProductBrand;
 import com.forsfortis.bicycleapp.model.ProductCategory;
+import com.forsfortis.bicycleapp.model.ProductImage;
 import com.forsfortis.bicycleapp.model.ProductSize;
 import com.forsfortis.bicycleapp.vo.ProductBrandVo;
 import com.forsfortis.bicycleapp.vo.ProductCategoryVo;
+import com.forsfortis.bicycleapp.vo.ProductImageVo;
+import com.forsfortis.bicycleapp.vo.ProductImagesVo;
 import com.forsfortis.bicycleapp.vo.ProductSizeVo;
 import com.forsfortis.bicycleapp.vo.ProductVo;
 @Component
@@ -71,6 +74,8 @@ public class ProductServices {
 		for (Product product : products) {
 			ProductVo vo=new ProductVo();
 			BeanUtils.copyProperties(product, vo);
+			final List<ProductImagesVo> productImages = getProductImages(product.getId());
+			vo.setProductImages(productImages);
 			productsVo.add(vo);
 		}
 		return productsVo;
@@ -82,6 +87,8 @@ public class ProductServices {
 		for (Product product : products) {
 			ProductVo vo=new ProductVo();
 			BeanUtils.copyProperties(product, vo);
+			final List<ProductImagesVo> productImages = getProductImages(product.getId());
+			vo.setProductImages(productImages);
 			productsVo.add(vo);
 		}
 		return productsVo;
@@ -91,7 +98,9 @@ public class ProductServices {
 		final Product product = productDao.getProduct(productId);
 		ProductVo vo=new ProductVo();
 		if(product!=null && product.getId()!=0){
-			BeanUtils.copyProperties(product, vo);	
+			BeanUtils.copyProperties(product, vo);
+			final List<ProductImagesVo> productImages = getProductImages(productId);
+			vo.setProductImages(productImages);
 		}		
 		return vo;
 	}
@@ -113,6 +122,8 @@ public class ProductServices {
 				for (Product product : products) {
 					ProductVo pvo=new ProductVo();
 					BeanUtils.copyProperties(product, pvo);
+					final List<ProductImagesVo> productImages = getProductImages(product.getId());
+					pvo.setProductImages(productImages);
 					productVoList.add(pvo);
 				}
 				productcategoryVo.setProductList(productVoList);
@@ -120,5 +131,25 @@ public class ProductServices {
 			}
 		}
 		return productcategoryVoList;
+	}
+
+	public void saveProductImage(Integer productid, String name) {
+		productDao.saveProductImage(productid,name);
+		
+	}
+
+	public List<ProductImagesVo> getProductImages(Integer productId) {
+		final List<ProductImage> productImages = productDao.getProductImages(productId);
+		List<ProductImagesVo> voList=new ArrayList<ProductImagesVo>();
+		for (ProductImage productImage : productImages) {
+			ProductImagesVo vo=new ProductImagesVo();
+			BeanUtils.copyProperties(productImage, vo);
+			voList.add(vo);
+		}
+		return voList;
+	}
+
+	public void deleteProductImage(int productId) {
+		productDao.deleteProductImage(productId);
 	}
 }

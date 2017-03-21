@@ -8,4 +8,5 @@ public interface UserDao {
 	public int saveUser(User user);
 	public UserVO userLogin(String userName,String password);
 	public int saveUserDetails(UserDetails userDetails);
+	public void saveSubscribers(String sub);
 }

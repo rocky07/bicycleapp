@@ -34,7 +34,7 @@ public class ContactController {
 		if(result.hasErrors()){
 			mv.setViewName("contact");
 		}else{
-			SendMail.sendMail(contact.getEmail(), contact.getWebsite()+":"+contact.getComment());
+			new SendMail().sendMail(contact.getEmail(), contact.getWebsite()+":"+contact.getComment());
 			mv.setViewName("index");
 		}
 		return mv;

@@ -9,8 +9,10 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.forsfortis.bicycleapp.dao.UserDao;
+import com.forsfortis.bicycleapp.model.Subscribers;
 import com.forsfortis.bicycleapp.model.User;
 import com.forsfortis.bicycleapp.model.UserDetails;
+import com.forsfortis.bicycleapp.vo.UserRole;
 import com.forsfortis.bicycleapp.vo.UserVO;
 @Transactional
 @Repository("userDao")
@@ -30,8 +32,13 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 		final List<User> list = createCriteria.list();
 		if(!list.isEmpty()){			
 			User user=list.get(0);
+			UserRole role=UserRole.USER;
+			if(user.getRole().equalsIgnoreCase("admin")){
+				role=UserRole.ADMIN;
+			}
 			userVo=new UserVO();
 			BeanUtils.copyProperties(user, userVo);
+			userVo.setRole(role);
 		}
 		
 		return userVo;
@@ -40,6 +47,11 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 	@Override
 	public int saveUserDetails(UserDetails userDetails) {
 		return (Integer)getSession().save(userDetails);
+	}
+
+	@Override
+	public void saveSubscribers(String sub) {
+		getSession().save(new Subscribers(sub));
 	}
 
 }

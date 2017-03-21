@@ -5,6 +5,7 @@ import java.util.List;
 import com.forsfortis.bicycleapp.model.Product;
 import com.forsfortis.bicycleapp.model.ProductBrand;
 import com.forsfortis.bicycleapp.model.ProductCategory;
+import com.forsfortis.bicycleapp.model.ProductImage;
 import com.forsfortis.bicycleapp.model.ProductSize;
 
 public interface ProductDao {
@@ -20,5 +21,11 @@ public interface ProductDao {
 	public List<Product> getFeaturedProducts();
 
 	public Product getProduct(int productId);
+
+	public void saveProductImage(Integer productid, String name);
+
+	public List<ProductImage> getProductImages(Integer productId);
+
+	public void deleteProductImage(int productId);
 		
 }

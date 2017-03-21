@@ -1,5 +1,7 @@
 package com.forsfortis.bicycleapp.mail;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
 //File Name SendEmail.java
 import java.util.Properties;
 
@@ -13,11 +15,25 @@ import javax.mail.internet.MimeMessage;
 
 public class SendMail {
 private static final String EMAIL_SUBJECT="Enquiry";
+private static final String CONFIG_FILE="config.properties";
+static Properties configProp = new Properties();
+InputStream input = null;
+
+
+public SendMail(){
+	try {
+		input = this.getClass().getClassLoader().getResourceAsStream(CONFIG_FILE);
+		configProp.load(input);
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+}
 	
-public static void sendMail(String from,String text) {
+public void sendMail(String from,String text) {
 	
-	final String username = "ramesan.rakesh@gmail.com";
-	final String password = "@brattleboro08!";
+	final String USERNAME = configProp.getProperty("email.user");
+	final String PASSWORD = configProp.getProperty("email.password");
+	final String EMAILTO = configProp.getProperty("email.sendto");
 
 	Properties props = new Properties();
 	props.put("mail.smtp.auth", "true");
@@ -28,7 +44,7 @@ public static void sendMail(String from,String text) {
 	Session session = Session.getInstance(props,
 	  new javax.mail.Authenticator() {
 		protected PasswordAuthentication getPasswordAuthentication() {
-			return new PasswordAuthentication(username, password);
+			return new PasswordAuthentication(USERNAME, PASSWORD);
 		}
 	  });
 
@@ -37,7 +53,7 @@ public static void sendMail(String from,String text) {
 		Message message = new MimeMessage(session);
 		message.setFrom(new InternetAddress(from));
 		message.setRecipients(Message.RecipientType.TO,
-			InternetAddress.parse("rakeshr.21@gmail.com"));
+			InternetAddress.parse(EMAILTO));
 		message.setSubject(EMAIL_SUBJECT);
 		message.setText(text);
 

@@ -50,7 +50,7 @@ public class MyAccountController {
 	}
 	
 	@RequestMapping("/addtowishlist")
-	public String addToWishlist(@RequestParam("id") Integer id,HttpSession httpSession) throws Exception{
+	public ModelAndView addToWishlist(@RequestParam("id") Integer id,HttpSession httpSession) throws Exception{
 		final UserVO user = (UserVO)httpSession.getAttribute("user");
 		if(user!=null){
 			orderService.addToWishlist(user.getId(),id);	
@@ -58,7 +58,7 @@ public class MyAccountController {
 			throw new SessionExpiredException();
 		}
 		
-		return "shop-wishlist";
+		return new ModelAndView("redirect:/shop-wishlist");
 	}
 	
 	@RequestMapping("/removefromwishlist")

@@ -24,5 +24,8 @@ public class UserServices {
 	public UserVO userLogin(String userName,String password){
 		return userDao.userLogin(userName,password);
 	}
+	public void saveSubscribers(String sub) {
+		userDao.saveSubscribers(sub);
+	}
 	
 }

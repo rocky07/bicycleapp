@@ -88,7 +88,7 @@
                                 <form:input path="cartList[${status.index}].title" type="hidden"/>
                                 <form:input path="cartList[${status.index}].colors" type="hidden"/>
                                 <form:input path="cartList[${status.index}].sellingPrice" type="hidden"/>
-                                <form:input type="number" start="1" step="1" path="cartList[${status.index}].quantity" />
+                                <form:input type="number" start="1" step="1" min="1" path="cartList[${status.index}].quantity" />
                               <!--  
                                 <input type="text"  name="cart" title="Qty" id="<c:out value='cart.cartList${status.index}.quantity'/>" name="<c:out value='cartList${status.index}.quantity'/>" class="input-text qty text" size="4" value="<c:out value='${cart.quantity}'/>"/>
                                 -->

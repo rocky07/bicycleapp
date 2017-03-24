@@ -93,6 +93,9 @@ public class ProductController {
 				stream.write(bytes);
 				stream.close();
 				// TODO perform database upload operation here..
+				if(productid==null){
+					productid=1;
+				}
 				productService.saveProductImage(productid, name);
 
 				System.out.println("You successfully uploaded file=" + name);
@@ -275,14 +278,17 @@ public class ProductController {
 
 	@RequestMapping("/addtocart")
 	public ModelAndView addToCart(@RequestParam("id") int productId, @RequestParam("title") String title,
-			@RequestParam("price") int price, HttpSession httpSession) {
+			@RequestParam("price") int price,@RequestParam(value="qty",required=false) Integer qty, HttpSession httpSession) {
 		Object cartList = httpSession.getAttribute(SHOPPING_CART);
 		if (cartList == null) {
 			Map<Integer, ShopingCartVo> cart = new HashMap<Integer, ShopingCartVo>();
 			httpSession.setAttribute(SHOPPING_CART, cart);
 			cartList = httpSession.getAttribute(SHOPPING_CART);
 		}
-		ShopingCartVo vo = new ShopingCartVo(productId, price, title);
+		if(qty == null){
+			qty=1;
+		}
+		ShopingCartVo vo = new ShopingCartVo(productId, price, title,qty);
 		((Map<Integer, ShopingCartVo>) cartList).put(productId, vo);
 		computeTotal(httpSession);
 		return new ModelAndView("redirect:/shop");

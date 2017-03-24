@@ -12,22 +12,24 @@
                                 <li>
                                     <span>Address :</span>
                                     <address>
-                                        134/2095A, Mamangalam, Cochin, India <br/>Pin:682025, 
+                                    Fors Fortis IT & Marketing Solutions Pvt. Ltd.<br/>
+                                    34/2095A, Mamangalam, Cochin, India<br/>
+									Pin:682025
                                     </address>
                                 </li>
                                 <li>
                                     <span>Phone :</span>
-                                    (012) 345 6789
+                                    (091) 9846 95268 
                                 </li>
                                 <li>
                                     <span>Email :</span>
-                                    info@templaza.com
+                                    info@cyclosure.com 
                                 </li>
                             </ul>
                         </div>
                         <div class="widget">
-                            <form class="tz-subcribe">
-                                <input type="text" name="sub" value="" placeholder="Enter your email...">
+                            <form class="tz-subcribe" action="subscribe">
+                                <input type="text" required="required" name="sub" value="" placeholder="Enter your email...">
                                 <input type="submit" name="subscribe" value="Subscribe">
                             </form>
                         </div>
@@ -63,8 +65,8 @@
                             <div class="tz-widget-say">
                                 <img src="images/say.jpg" alt="Kathy Young">
                                 <div class="entry-say">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor     incididunt ut labore et dolore magna aliqua.</p>
-                                    <span>Kathy Young</span>
+                                    <p>Their turnaround times have been pretty good, compared with other websites that i've dealt with..</p>
+                                    <span>Praveen VK</span>
                                 </div>
                             </div>
                         </div>
@@ -145,7 +147,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6 col-sm-6">
-                            <p>Copyright &copy; 2015 <a href="http://templaza.com/" target="_blank">BikeSport</a> by TemPlaza. All rights reserved.</p>
+                            <p>Copyright &copy; 2017 <a href="http://forsfortis.com/" target="_blank">Cyclosure</a> by Forsfortis. All rights reserved.</p>
                         </div>
                         <div class="col-md-6 col-sm-6">
                             <div class="pull-right">

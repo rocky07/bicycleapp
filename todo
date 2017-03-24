@@ -7,25 +7,27 @@ create 2 custom blog posts for landing page
 links for get in touch section in index page
 correct addto cart & wishlist icons for the landing page promo product
 create count down for main page product
-
-
-update rating 
 update stock status for the landing page item
 correct links for landing page featured products
 icon slider for landing page items
 correct phone number for header section
 usd drop down shold change to inr
+quantity udate cant be negative
+wish list and cart countr in header shold reflect real values
+
 my account shold say no item to list or say login to view
 wish list shold say no items to list or login to view
 empty my cart shold say shop more
-quantity udate cant be negative
 apply coupen code shold work or be removed
-wish list and cart countr in header shold reflect real values
+
 shoping cart should show both sub totaland order total
 have a cupen icons should either be removed or fixed in checkout page
 ship to different address should higlight different address
 shiping and handling info should be updated in the checkout page to a more valid one
 payment gate way needds to be integrated
+error in add to wishlist when userlogged in
+url correction in index page for the sale item
+extermalist sale items product id
 
 
 
@@ -33,3 +35,4 @@ payment gate way needds to be integrated
 
 correct all footer links
 correct contactinfo emails and all social links
+update rating 

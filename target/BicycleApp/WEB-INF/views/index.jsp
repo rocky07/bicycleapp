@@ -451,11 +451,18 @@
                                     <!--Start product item-->
                                     <div class="product-item">
                                         <div class="product-thubnail">
-                                            <img src="images/product/product3.jpg" alt="product 3" />
+                                        <c:choose>
+			                                <c:when test="${not empty product.productImages}">
+			                                <img src='uploads/product/<c:out value="${product.productImages[0].image}"/>' alt="product search one">
+			                                </c:when>
+			                                <c:otherwise>
+			                                	<img src="images/product/product3.jpg" alt="product search one">
+			                                </c:otherwise>
+			                                </c:choose>
                                             <div class="product-meta">
-                                                <a class="add-to-cart" href="shop-cart.html">Add to cart</a>
-                                                <span class="quick-view">
-                                                    <a href="#">Quick view</a>
+		                                        <a href="addtocart?id=<c:out value='${product.id}'/>&title=<c:out value='${product.title}'/>&price=<c:out value='${product.price}'/>" class="add-to-cart">Add to cart</a>
+                                                <span class="quick-view">                                                    
+                                                    <a href="shop-product?id=<c:out value='${product.id}'/>"><i class="fa fa-eye"></i> Quick view</a>
                                                 </span>
                                             </div>
                                         </div>
@@ -502,7 +509,16 @@
 
                             <!--Thumnbail-->
                             <div class="event-thumbail">
-                                <img src="images/product/single-product.jpg" alt="product event">
+                            <c:choose>
+			                                <c:when test="${not empty product.productImages}">
+			                                <img src='uploads/product/<c:out value="${product.productImages[0].image}"/>' alt="product search one">
+			                                </c:when>
+			                                <c:otherwise>
+			                                	<img src="images/product/single-product.jpg" alt="product event">
+			                                </c:otherwise>
+			                                </c:choose>
+			                                
+                                
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -533,12 +549,12 @@
                                         <i class="fa fa-circle steelblue"></i>
                                     </span>
                                     <span class="tz-stock">
-                                       Stock : <c:out value="${product.stock == 0 ? 'out of stock':product.stock}"/>
+                                       Stock : <c:out value="${product.stock gt 0 ? product.stock : 'out of stock'}"/>
                                     </span>
                                 </li>
                                 <li class="event-footer">
-                                    <a href="shop-cart.html" class="add-to-cart">Add to cart</a>
-                                    <a href="#" class="add-to-wishlist">Add to wishlist</a>
+	                                <a href="addtocart?id=<c:out value='${product.id}'/>&title=<c:out value='${product.title}'/>&price=<c:out value='${product.price}'/>" class="add-to-cart">Add to cart</a>
+                                    <a href="addtowishlist?id=<c:out value='${product.id}'/>" class="add-to-wishlist">Add to wishlist</a>
                                 </li>
                             </ul>
                             <!--End Product content-->
@@ -582,12 +598,12 @@
                             <!--Start new blog-->
                             <div class="tz-new-blog">
                                 <div class="tzthumbnail">
-                                    <img src="images/Blog/Blog1.jpg" alt="Blog">
+                                    <img src="images/Blog/Blog4.jpg" alt="Blog">
                                 </div>
                                 <div class="tz-new-content">
-                                    <h4><a href="single-blog.html">Gulf Today Report On KGS Carnival – 2015</a></h4>
-                                    <span class="post-date">Posted at March 19. 2015</span>
-                                    <p>Excellence is never an accident. It is always the result of high intention and intelligent execution; it represents the wise choice of many alternatives.</p>
+                                    <h4><a href="#">How to buy an Bike</a></h4>
+                                    <span class="post-date">Posted at March 21. 2017</span>
+                                    <p>No matter whether you purchase an entry-level bike or a top-shelf model, it will be miserable to ride if it doesn't fit. Any good salesperson should help you find the right size, then make at least four adjustments<!-- : seat height, saddle position, handlebar height, and reach. --></p>
                                     <a href="#" class="continue">Continue Reading</a>
                                 </div>
                             </div>
@@ -599,12 +615,13 @@
                             <!--Start new blog-->
                             <div class="tz-new-blog">
                                 <div class="tzthumbnail">
-                                    <img src="images/Blog/Blog2.jpg" alt="Blog">
+                                    <img src="images/Blog/Blog3.jpg" alt="Blog">
                                 </div>
                                 <div class="tz-new-content">
-                                    <h4><a href="blog.html">Excepteur sint ipsum dolor sit amet conse ctetur</a></h4>
-                                    <span class="post-date">Posted at March 19. 2015</span>
-                                    <p>Excellence is never an accident. It is always the result of high intention and intelligent execution; it represents the wise choice of many alternatives.</p>
+                                    <h4><a href="#">Bicycle for dummys</a></h4>
+                                    <span class="post-date">Posted at March 19. 2017</span>
+                                    <p>Subscribe If you plan to do more than just salivate over the shiny new bikes in our Buyer's Guide, you might be feeling a little overwhelmed by your options. Before your head explodes, allow us to demystify the process of bicycle buying.
+									<!-- Start by deciding which of the most common bike types makes sense for you—mountain, road, hybrid, or city/commuter. Next, factor in your cycling goals. Consider things like what kind of terrain you'll ride most, what distance you want to cover, and what you want to accomplish. -->	</p>
                                     <a href="#" class="continue">Continue Reading</a>
                                 </div>
                             </div>
@@ -618,6 +635,7 @@
         <!--End section large-->
 
         <!--Start partners-->
+        <!-- 
         <div class="container">
             <ul class="tz-partners">
                 <li>
@@ -681,7 +699,7 @@
                     </a>
                 </li>
             </ul>
-        </div>
+        </div> -->
         <!--End partners-->
 
 <jsp:include page="footer.jsp" />  

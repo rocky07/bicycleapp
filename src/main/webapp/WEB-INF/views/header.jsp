@@ -232,7 +232,7 @@
                         <a href="#"><strong>0</strong></a>
                     </li> -->
                     <li class="tz-mini-cart">
-                        <a href="shop-cart.html"><!-- <strong>2</strong> -->Cart : <c:out value="${sessionScope.sbt eq null ? 0 : sessionScope.sbt}"/></a>
+                        <a href="shop-cart.html"><!-- <strong>2</strong> -->Cart : <span style='font-family:Arial;'>&#8377;</span><c:out value="${sessionScope.sbt eq null ? 0 : sessionScope.sbt}"/></a>
 
                         <!--Mini cart-->
                         <ul class="cart-inner">
@@ -242,9 +242,9 @@
                                 	<img src="images/product/product-cart1.png" alt="product search one">
                                 </div> -->
                                 <div class="mini-cart-ds">
-                                    <h6><a href="single-product.html"><c:out value="${cartitem.title}"></c:out></a></h6>
+                                    <h6><a href="shop-product.html?id=<c:out value='${cartitem.productId}' />"><c:out value="${cartitem.title}"></c:out></a></h6>
                                     <span class="mini-cart-meta">
-                                        <a href="single-product.html"><c:out value="${cartitem.sellingPrice}"/></a>
+                                        <a href="shop-product.html?id=<c:out value='${cartitem.productId}' />"><span style='font-family:Arial;'>&#8377;</span><c:out value="${cartitem.sellingPrice}"/></a>
                                         <span class="mini-meta">
                                            <span class="mini-color">Color: <i class="<c:out value="${cartitem.colors}"/>"></i></span>
                                            <span class="mini-qty">Qty: <c:out value="${cartitem.quantity}"/></span>
@@ -260,7 +260,7 @@
                             <li class="mini-subtotal">
                                 <span class="subtotal-content">
                                     Subtotal:
-                                    <strong class="pull-right"><c:out value="${sessionScope.sbt}"/></strong>
+                                    <span style='font-family:Arial;'>&#8377;</span><strong class="pull-right"><c:out value="${sessionScope.sbt}"/></strong>
                                 </span>
                             </li>
                             <li class="mini-footer">

@@ -5,9 +5,9 @@ import com.forsfortis.bicycleapp.model.Colors;
 public class ShopingCartVo {
 	public ShopingCartVo(){}
 	
-	public ShopingCartVo(int productId, int price, String title){
+	public ShopingCartVo(int productId, int price, String title,int quantity){
 		this.productId=productId;
-		this.quantity=1;
+		this.quantity=quantity;
 		this.colors=Colors.RED;
 		this.title=title;
 		this.sellingPrice=price;

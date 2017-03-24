@@ -83,10 +83,10 @@
                             <i class="fa fa-star-half-o"></i>
                         </span>
                         <p class="product-price">
-                            <span class="price"><c:out value="${product.price}"/></span>
+                            <span style='font-family:Arial;'>&#8377;</span><span class="price"><c:out value="${product.price}"/></span>
                             <span class="stock">Availability:  <span>
                             <c:choose>
-                             <c:when test="${product.stock gt 0} }">
+                             <c:when test="${product.stock gt 0}">
                              In stock
                              </c:when>
                              <c:otherwise>
@@ -100,7 +100,10 @@
                             <c:out value="${product.description}"/>
                             </p>
                         </div>
-                        <form class="tz_variations_form ">
+                        <form  action="addtocart" class="tz_variations_form ">
+                        <input type="hidden" name="id" value="<c:out value='${product.id}'/>"/>
+                        <input type="hidden" name="title" value="<c:out value='${product.title}'/>"/>
+                        <input type="hidden" name="price" value="<c:out value='${product.price}'/>"/>  
                             <p class="form-attr">
                             <!-- -
                                 <span class="color">
@@ -113,7 +116,7 @@
                                 </span> -->
                                 <span class="tzqty">
                                     <label>Qty:</label>
-                                    <input type="number" step="1" min="1" name="quantity" value="1" title="Qty" class="input-text qty text" size="4">
+                                    <input type="number" step="1" min="1" name="qty" value="1" title="Qty" class="input-text qty text" size="4">
                                 </span>
                             </p>
                             <p>
@@ -215,7 +218,7 @@
                                         </div>
                                         <div class="product-infomation">
                                             <h4><a href="single-product.html"><c:out value="${product.title}"/></a></h4>
-                                            <span class="product-price"><c:out value="${product.price}"/></span>
+                                            <span style='font-family:Arial;'>&#8377;</span><span class="product-price"><c:out value="${product.price}"/></span>
                                             <span class="product-attr">
                                                 <i class="fa fa-circle light-blue"></i>
                                                 <i class="fa fa-circle orange"></i>
@@ -239,6 +242,7 @@
         <!--End tabs-->
 
         <!--Start partners-->
+        <!-- 
         <div class="container">
             <ul class="tz-partners">
                 <li>
@@ -258,7 +262,7 @@
                 </li>
                 <li>
                     <a href="#">
-                        <img src="images/clients/partner4.jpg" alt="partner">
+                        <img src="images/clients/partner4.jpg" alt="partner">s
                     </a>
                 </li>
                 <li>
@@ -303,6 +307,7 @@
                 </li>
             </ul>
         </div>
+         -->
         <!--End partners-->
     </section>
     <!--End Shop single-->

@@ -44,17 +44,19 @@
                         <div class="blog-sidebar">
                             <aside class="contact-info widget no-border">
                                 <h4 class="widget-title">Contact info</h4>
-                                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis</p>
+                               
                                 <ul>
                                     <li>
                                         <span>Address</span>
-                                        <address>123 Sky Tower address name, Los Algeles, USA, Country, 01234</address>
+                                        <address> Fors Fortis IT & Marketing Solutions Pvt. Ltd.
+                                    34/2095A, Mamangalam, Cochin, India
+									Pin:682025</address>
                                     </li>
                                     <li>
-                                        <span>Phone</span> (012) 345 6789
+                                        <span>Phone</span>  (091) 9846 95268 
                                     </li>
                                     <li>
-                                        <span>Email:</span> info@templaza.com
+                                        <span>Email:</span>  info@cyclosure.com 
                                     </li>
                                 </ul>
                             </aside>

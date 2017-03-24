@@ -38,7 +38,15 @@
                             <ul class="product-categories">
                             <c:forEach items="${productcategory}" var="current">
         					<li class="cat-parent">
-         					<a href="shop.html?catid=<c:out value='${current.id}'/>"><c:out value="${current.category}" /><!--  <span>(3)</span> --></a>
+        					<c:choose>
+        					<c:when test="${current.hasChild}">
+        					<a href="#"><c:out value="${current.category}" /></a>
+        					</c:when>
+        					<c:otherwise>
+        					<a href="shop.html?catid=<c:out value='${current.id}'/>"><c:out value="${current.category}" /><!--  <span>(3)</span> --></a>
+        					</c:otherwise>
+        					</c:choose>
+         					
 	         					<c:if test="${current.hasChild}">
 		         					<ul class="children">
 		         							<c:forEach items="${current.children}" var="children">
@@ -129,7 +137,17 @@
                               <c:forEach items="${featuredproducts}" var="product">
                                 <li>
                                     <a href="shop-product?id=<c:out value='${product.id}'/>">
-                                        <img src="images/product/widget1.jpg" alt="Defy Advanced">
+                                    
+                                     <c:choose>
+			                                <c:when test="${not empty product.productImages}">
+			                                <img src='uploads/product/<c:out value="${product.productImages[0].image}"/>' alt="product search one">
+			                                </c:when>
+			                                <c:otherwise>
+			                                	<img src="images/product/widget1.jpg" alt="Defy Advanced">
+			                                </c:otherwise>
+			                                </c:choose>
+			                                
+                                        
                                         <div class="item-info">
                                             <h5><c:out value="${product.title}" /></h5>
                                              <span class="p-vote">
@@ -139,7 +157,7 @@
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star-half-o"></i>
                                             </span>
-                                            <span class="price"><c:out value="${product.price}" /></span>
+                                            <span style='font-family:Arial;'>&#8377;</span><span class="price"><c:out value="${product.price}" /></span>
                                         </div>
                                     </a>
                                 </li>
@@ -199,12 +217,20 @@
                                 <div class="item">
                                     <div class="product-item-inner">
                                         <div class="product-thumb">
-                                            <img src="images/product/shop1.jpg" alt="Liv Race Day Short Finger..">
+                                        
+                                        <c:choose>
+			                                <c:when test="${not empty product.productImages}">
+			                                <img src='uploads/product/<c:out value="${product.productImages[0].image}"/>' alt="product search one">
+			                                </c:when>
+			                                <c:otherwise>
+			                                	<img src="images/product/shop1.jpg" alt="product search one">
+			                                </c:otherwise>
+			                                </c:choose>
                                         </div>
                                         <div class="product-info">
                                             <h4> <a href="shop-product?id=<c:out value='${product.id}'/>"><c:out value="${product.title}" /></a></h4>
                                             <span class="p-meta">
-                                                <span class="p-price"><c:out value="${product.price}" /></span>
+                                              <span style='font-family:Arial;'>&#8377;</span><span class="p-price"><c:out value="${product.price}" /></span>
                                                 <span class="p-vote">
                                                     <i class="fa fa-star"></i>
                                                     <i class="fa fa-star"></i>

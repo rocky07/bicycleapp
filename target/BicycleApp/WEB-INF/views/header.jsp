@@ -8,19 +8,13 @@
                     <ul class="pull-left">
                         <li>
                             <a href="#">
-                                USD
+                                INR
                                 <span class="fa fa-angle-down tz-down"></span>
                             </a>
                             <ul class="sub-menu">
                                 <li>
-                                    <a href="#">EURO</a>
-                                </li>
-                                <li>
-                                    <a href="#">USD</a>
-                                </li>
-                                <li>
-                                    <a href="#">EGP</a>
-                                </li>
+                                    <a href="#">INR</a>
+                                </li>                                
                             </ul>
                         </li>
                         <li>
@@ -30,7 +24,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">Call us:   (012) 3456 7890</a>
+                            <a href="#">Call us:   (091) 9846 95268</a>
                         </li>
                     </ul>
                     <ul class="pull-right">
@@ -87,6 +81,7 @@
                     <div class="tz-search pull-right">
 
                         <!--Start form search-->
+                        <!-- 
                         <form>
                             <label class="select-arrow">
                                 <select name="category">
@@ -101,6 +96,7 @@
                             <input type="text" class="tz-query" id="tz-query" value="" placeholder="Search for product">
                             <button type="submit"></button>
                         </form>
+                         -->
                         <!--End Form search-->
 
                         <!--live search-->
@@ -166,14 +162,14 @@
                     <ul class="tz-main-menu pull-left nav-collapse">
                         <li>
                             <a href="index.html">Home</a>
-                            <ul class="sub-menu">
+                            <!-- <ul class="sub-menu">
                                 <li>
                                     <a href="home-boxed.html">Home Boxed</a>
                                 </li>
                                 <li>
                                     <a href="mega-menu.html">Mega Menu</a>
                                 </li>
-                            </ul>
+                            </ul> -->
                         </li>
                         <!--<li>
                             <a href="shop.html">
@@ -232,21 +228,23 @@
 
                 <!--Shop meta-->
                 <ul class="tz-ecommerce-meta pull-right">
-                    <li class="tz-menu-wishlist">
+                    <!-- <li class="tz-menu-wishlist">
                         <a href="#"><strong>0</strong></a>
-                    </li>
+                    </li> -->
                     <li class="tz-mini-cart">
-                        <a href="shop-cart.html"><strong>2</strong>Cart : <c:out value="${sessionScope.sbt}"/></a>
+                        <a href="shop-cart.html"><!-- <strong>2</strong> -->Cart : <span style='font-family:Arial;'>&#8377;</span><c:out value="${sessionScope.sbt eq null ? 0 : sessionScope.sbt}"/></a>
 
                         <!--Mini cart-->
                         <ul class="cart-inner">
                         <c:forEach items="${sessionScope.cartvalues}" var="cartitem">
                             <li class="mini-cart-content">
-                                <div class="mini-cart-img"><img src="images/product/product-cart1.png" alt="product search one"></div>
+                                <!-- <div class="mini-cart-img">
+                                	<img src="images/product/product-cart1.png" alt="product search one">
+                                </div> -->
                                 <div class="mini-cart-ds">
-                                    <h6><a href="single-product.html"><c:out value="${cartitem.title}"></c:out></a></h6>
+                                    <h6><a href="shop-product.html?id=<c:out value='${cartitem.productId}' />"><c:out value="${cartitem.title}"></c:out></a></h6>
                                     <span class="mini-cart-meta">
-                                        <a href="single-product.html"><c:out value="${cartitem.sellingPrice}"/></a>
+                                        <a href="shop-product.html?id=<c:out value='${cartitem.productId}' />"><span style='font-family:Arial;'>&#8377;</span><c:out value="${cartitem.sellingPrice}"/></a>
                                         <span class="mini-meta">
                                            <span class="mini-color">Color: <i class="<c:out value="${cartitem.colors}"/>"></i></span>
                                            <span class="mini-qty">Qty: <c:out value="${cartitem.quantity}"/></span>
@@ -262,7 +260,7 @@
                             <li class="mini-subtotal">
                                 <span class="subtotal-content">
                                     Subtotal:
-                                    <strong class="pull-right"><c:out value="${sessionScope.sbt}"/></strong>
+                                    <span style='font-family:Arial;'>&#8377;</span><strong class="pull-right"><c:out value="${sessionScope.sbt}"/></strong>
                                 </span>
                             </li>
                             <li class="mini-footer">

@@ -549,7 +549,7 @@
                                         <i class="fa fa-circle steelblue"></i>
                                     </span>
                                     <span class="tz-stock">
-                                       Stock : <c:out value="${product.stock == 0 ? 'out of stock':product.stock}"/>
+                                       Stock : <c:out value="${product.stock gt 0 ? product.stock : 'out of stock'}"/>
                                     </span>
                                 </li>
                                 <li class="event-footer">

@@ -28,12 +28,17 @@
                 <prop key="javax.mail.AuthenticationFailedException">
                     generic_error
                 </prop>
+                <prop key="com.forsfortis.bicycleapp.util.SessionExpiredException">
+                    shop-login
+                </prop>
             </props>
         </property>
         <property name="defaultErrorView" value="generic_error"/>
     </bean>
     <!--  exception mappings ends -->
-    
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>  
+  
+
 
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	
@@ -42,7 +47,9 @@
 	<mvc:resources mapping="/fonts/**" location="/resources/fonts/" />
 	<mvc:resources mapping="/rs-plugin/**" location="/resources/rs-plugin/" />
 	<mvc:resources mapping="/images/**" location="/resources/images/" />
-
+	<mvc:resources mapping="/uploads/**" location="file:///home/rocky/Downloads/images/product" /> 
+	<!-- <mvc:resources mapping="/uploads/**" location="file:///home2/cyclo17/jvm/apache-tomcat-7.0.59/domains/cyclosure.com/uploadimages/images/product"/> -->
+	
 	<mvc:annotation-driven />
 
 </beans>

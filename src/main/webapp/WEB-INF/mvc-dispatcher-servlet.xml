@@ -47,8 +47,9 @@
 	<mvc:resources mapping="/fonts/**" location="/resources/fonts/" />
 	<mvc:resources mapping="/rs-plugin/**" location="/resources/rs-plugin/" />
 	<mvc:resources mapping="/images/**" location="/resources/images/" />
-	<mvc:resources mapping="/uploads/**" location="file:///home/rocky/Downloads/images/product" />
-
+	<mvc:resources mapping="/uploads/**" location="file:///home/rocky/Downloads/images/product" /> 
+	<!-- <mvc:resources mapping="/uploads/**" location="file:///home2/cyclo17/jvm/apache-tomcat-7.0.59/domains/cyclosure.com/uploadimages/images/product"/> -->
+	
 	<mvc:annotation-driven />
 
 </beans>
